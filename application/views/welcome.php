@@ -18,25 +18,25 @@
 		<ul id="iconos">
 			<li>
 				<div>
-				<p><img src="assets/imagenes/soluciones-hogar.png"></p>
+				<p><img src="assets/imagenes/soluciones-hogar.png" alt="Soluciones para el hogar"></p>
 				<p>Soluciones para el hogar</p>
 				</div>
 			</li>
 			<li>
 				<div >
-				<p ><img src="assets/imagenes/eliminacion-virus.png">
+				<p ><img src="assets/imagenes/eliminacion-virus.png" alt="Eliminación de virus">
 				<p >Eliminación de virus</p>
 				</div>
 			</li>
 			<li>
 				<div>
-				<p ><img src="assets/imagenes/configuracion.png">
+				<p ><img src="assets/imagenes/configuracion.png" alt="Configuracion de equipos y perifericos">
 				<p >Configuración</p>
 				</div>
 			</li>
 			<li>
 				<div>
-				<p ><img src="assets/imagenes/optimizacion.png">
+				<p ><img src="assets/imagenes/optimizacion.png" alt="Optmizacion de equipos">
 				<p >Optimización</p>
 				</div>
 			</li>
