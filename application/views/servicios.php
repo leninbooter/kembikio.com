@@ -1,4 +1,4 @@
-<h1>Servicios</h1>
+<h1 class="titulo">Servicios</h1>
 <ul id="inf_servicios">
 	<li>
 		<div class="def">
@@ -39,7 +39,7 @@
 	<li>
 		<div class="def">
 			<h2>Asesorías Técnicas</h2>
-			<p>¿Alguna recomendacion para comprar un equipo? ¿Quieres crear un centro de entrenimiento? Llamanos, nosotros te decimos como.</p> 
+			<p>¿Alguna recomendacion para comprar un equipo? ¿Quieres crear un centro de entrenimiento? Llamanos, nosotros te ayudamos.</p> 
 		</div>
 		<div class="img">
 			<img src="<?php echo base_url('assets/imagenes/asesorias-tecnicas.png'); ?>" alt="Asesorías tecnicas"> 
@@ -47,8 +47,8 @@
 	</li>
 	<li>
 		<div class="def">
-		 <h2>Ayuda en Remoto</h2>
-		<p>Soporte inmediato usando la conexion a Internet.</p> 
+			<h2>Ayuda en Remoto</h2>
+			<p>Soporte inmediato usando la conexion a Internet.</p> 
 		</div>
 		<div class="img">
 			<img src="<?php echo base_url('assets/imagenes/servicios-soporte-remoto.png'); ?>" alt="Ayuda remota"> 

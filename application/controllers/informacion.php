@@ -25,6 +25,29 @@ class Informacion extends CI_Controller {
 		$this->load->view('footer');
 		//$this->load->view('welcome_message');
 	}
+	
+	public function planes()
+	{
+		$data['title'] = 'Planes de Servicio';
+		$this->load->view('header', $data);
+		$this->load->view('planes');
+		$this->load->view('footer');
+	}
+	
+	public function acercade()
+	{
+		$data['title'] = 'Acerca de Kembikio';
+		$this->load->view('header', $data);
+		$this->load->view('acerca-de');
+		$this->load->view('footer');
+	}
+	public function contactanos()
+	{
+		$data['title'] = 'Acerca de Kembikio';
+		$this->load->view('header', $data);
+		$this->load->view('contactanos');
+		$this->load->view('footer');
+	}
 }
 
 /* End of file welcome.php */

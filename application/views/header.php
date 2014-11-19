@@ -6,27 +6,21 @@
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/estilos.css'); ?>">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/responsive.css'); ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/normalize.css'); ?>">
-		
-		 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/normalize.css'); ?>">				
 		 
 		<title><?php echo $title; ?></title>
 	</head>
 	<body>
-		<div id="contenedor">
+		<!-- <div id="contenedor">-->
 			<header>
 				<div id="headerBar">
 					<div id="logo">
-						<img src="<?php echo base_url('assets/imagenes/logo.png'); ?>" alt="Kembikio">
+						<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url('assets/imagenes/logo.png'); ?>" alt="Kembikio"></a>
 					</div>
 					<!-- <div id="navegacion">-->
 						<nav>
 							<ul>
-								<li>Servicios</li>
-								<li>Planes</li>
-								<li>Auto Ayuda</li>
-								<li>Acerca de</li>
-								<li>Contáctanos</li>
+								<li><a href="<?php echo base_url('index.php/informacion/servicios'); ?>">Servicios</a></li><li><a href="<?php echo base_url('index.php/informacion/planes'); ?>">Planes</a></li><li><a href="<?php echo base_url('index.php/informacion/planes'); ?>">Auto Ayuda</a></li><li><a href="<?php echo base_url('index.php/informacion/acercade'); ?>">Acerca de</a></li><li><a href="<?php echo base_url('index.php/informacion/contactanos'); ?>">Contáctanos</a></li>
 							</ul>
 						</nav>
 					<!-- </div> -->

@@ -45,6 +45,9 @@
     color: #2b2b2b;
     font-size: 1.2em;
   }
+  #mainContent {
+    width: 100%;
+  }
   #welcome {
     background: #fff;
     color: #000;
