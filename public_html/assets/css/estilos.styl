@@ -1,10 +1,6 @@
 $header_height = 60px
 $page_width = 950px
 
-@import url('http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500');
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:600');
-@import url('http://fonts.googleapis.com/css?family=Roboto+Slab');
-
 html
 body
 	height 100% !important
@@ -17,10 +13,7 @@ footer
 	background #000000
 	text-align center
 	line-height @height
-	font-size 12px
-
-html
-	font-family: 'Raleway' !important;	
+	font-size 12px	
 
 header
 	background #666666
@@ -208,16 +201,35 @@ ul
 	height auto
 	min-height 100%
 
-#mainContent:after
+#mainContent::after
 	height 25px
 	display block
 	clear both
+	content ''
 	
 #navegacion
 	float right
 	display inline-block
 	height $header_height
 	line-height $header_height
+	
+#respuesta_form_contacto
+	width 250px
+	display none
+	text-align left
+	
+	font-size 0.9em
+	
+#respuesta_form_contacto ul
+	margin 0
+	padding-left 15px
+	
+#respuesta_form_contacto ul li
+	color #ff5555
+	margin-top 5px
+
+#respuesta_form_contacto ul li::before
+	display none
 	
 #welcome
 	background url('../imagenes/background.png') no-repeat
@@ -300,22 +312,10 @@ ul
 .fila_campos
 	display block
 	margin-bottom 10px
-	
-.fila_campos input
-.fila_campos select
-.fila_campos textarea
-	width 238px
-	border 1px solid #d9d9d9
-	background #f4f4f4
-	color #e9e9e9e
-
-.fila_campos input
-.fila_campos textarea
-.fila_campos select option
-	padding 5px
+	text-align left
 	
 .fila_campos select
-	width 250px
+	width 40%
 	
 .fila_campos > label
 	width 100px
@@ -335,10 +335,7 @@ ul
 	
 .fila_contactos 	.columna_der
 	padding 0 10px
-
-.requerido
-	color red
-	font-size 1.7em
+	
 	
 .telefono
 	font-size 1.7em

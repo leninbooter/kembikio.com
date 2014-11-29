@@ -23,7 +23,15 @@ class Welcome extends CI_Controller {
 		$this->load->view('header', $data);
 		$this->load->view('welcome');
 		$this->load->view('footer');
-		//$this->load->view('welcome_message');
+		
+		$this->load->library('session');		
+			
+		$this->session->set_userdata('moneda_cod_local', '1');
+		$this->session->set_userdata('moneda_cod', 'EUR');
+		$this->session->set_userdata('moneda_cod_bank', '978');
+		$this->session->set_userdata('moneda_simbolo', '€');
+		$this->session->set_userdata('moneda_descripcion_local', 'Euros');
+		
 	}
 }
 

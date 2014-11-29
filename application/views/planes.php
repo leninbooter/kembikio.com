@@ -15,7 +15,7 @@
 		<h2>Consultas Express</h2>
 		<p class="precio">10€</br><span>(IVA incluido)</span></p>
 		<p class="condiciones">Por incidencia</p>
-		<p class="solicitar"><a class="boton" href="">Solicitar</a></p>
+		<p class="solicitar"><a class="boton" href="<?php echo base_url('index.php/tienda/agregar_carrito?serv_id=1'); ?>">Solicitar</a></p>
 		<ul>
 			<li>Consulta en remoto</li>
 			<li>PC, MAC y periféricos</li>
@@ -26,7 +26,7 @@
 		<h2>Servicio a Domicilio</h2>
 		<p class="precio">40€</br><span>(IVA incluido)</span></p>
 		<p class="condiciones">Por incidencia</p>
-		<p class="solicitar"><a class="boton" href="">Solicitar</a></p>
+		<p class="solicitar"><a class="boton" href="<?php echo base_url('index.php/tienda/agregar_carrito?serv_id=2'); ?>">Solicitar</a></p>
 		<ul>
 			<li>Agentes especializados</li>
 			<li>PC, MAC y periféricos</li>
@@ -38,7 +38,7 @@
 		<h2>Plan Anual</h2>
 		<p class="precio">228€</br><span>(IVA incluido)</span></p>
 		<p class="condiciones">Al año</p>
-		<p class="solicitar"><a class="boton" href="">Solicitar</a></p>
+		<p class="solicitar"><a class="boton" href="<?php echo base_url('index.php/tienda/agregar_carrito?serv_id=3'); ?>">Solicitar</a></p>
 		<ul>
 			<li>Asistencia ilimitada</li>
 			<li>Agentes especializados</li>

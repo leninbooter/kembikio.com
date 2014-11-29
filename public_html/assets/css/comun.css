@@ -1,0 +1,56 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:600");
+@import url("http://fonts.googleapis.com/css?family=Roboto+Slab");
+html {
+  font-family: 'Raleway' !important;
+}
+input,
+select,
+textarea {
+  width: 40%;
+  background: #f4f4f4;
+  color: #e9e9e9 e;
+  border: 1.5px solid #d9d9d9;
+}
+input,
+textarea,
+select option {
+  padding: 5px;
+}
+select {
+  width: 43.5% !important;
+}
+.bordenormal {
+  border: 1.5px solid #d9d9d9;
+}
+.bordetitilante {
+  border: 1.5px solid #f55;
+}
+.errores {
+  background: linear-gradient(to top, #7a3705 0, #fd720a 10px, #f1924c 100%);
+  color: #fff;
+  font-size: 80%;
+  width: 100%;
+  display: inline-block;
+}
+.errores #mensaje {
+  width: 80%;
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+}
+.errores #icono {
+  width: 20%;
+  text-align: right;
+  vertical-align: middle;
+  display: inline-block;
+  float: left;
+  padding-top: 10px;
+}
+.errores #icono > img {
+  width: 30%;
+}
+.requerido {
+  color: #f00;
+  font-size: 1.7em;
+}
