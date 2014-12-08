@@ -259,11 +259,13 @@ $( '#form_reg_pedido' ).submit( function( event ) {
 	
 	if( errores != '<ul></ul>')
 	{
+		window.scrollTo(0,0);
 		$('#mensaje').html( errores );
 		$('#errores').slideDown("fast");
 		return false;
+	}else
+	{		
+		return true;
 	}
-	
-	return true;
 	
 });

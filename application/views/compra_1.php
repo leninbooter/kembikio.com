@@ -12,7 +12,7 @@
 		<title><?php echo $title; ?></title>
 	</head>
 	<body>
-		<div id="errores" class="errores" style="display: none"><div id="icono"><img src="<?php echo base_url('assets/imagenes/advertencia.png');?>"/></div><div id="mensaje"><img src="<?php echo base_url('assets/imagenes/advertencia.png');?>"/></div></div>
+		<div id="errores" class="errores" style="display: none"><div id="mensaje"><img src="<?php echo base_url('assets/imagenes/advertencia.png');?>"/></div></div>
 		<div id="contenido">
 			<ul id="compra_lineatemporal">
 				<li class="actual">
@@ -44,6 +44,9 @@
 							<td><?php echo $items['name']; ?></td><td><?php echo $this->cart->format_number( $items['price'] ) . " " . $this->session->userdata('moneda_simbolo'); ?></td>
 							<td>
 								<?php echo $this->cart->format_number($items['subtotal']); ?>							
+								<input type="hidden" id="subtotal" name="subtotal" value="<?php echo $items['subtotal']; ?>">
+								<input type="hidden" id="imp" name="imp" value="0">
+								<input type="hidden" id="total" name="total" value="<?php echo $this->cart->total();?>">
 								<?php
 									if( $this->cart->product_options( $items['rowid'] )['moneda_cod_local'] == $this->session->userdata('moneda_cod_local') )
 									{

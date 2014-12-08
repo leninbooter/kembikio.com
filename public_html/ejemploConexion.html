@@ -1,0 +1,69 @@
+<html>
+<head><title>Ejemplo de conexión al SIS</title></head>
+<body>
+	<form name="validaForm" action="conexion_sis.php" method="post">
+		<table width="100%">
+			<tr>
+				<td align="center">
+					<table border="0" cellpadding="0" cellspacing="0" >
+						<tr>
+							<td>Nombre del comercio:</td>
+							<td>
+								<input type="text" name="Ds_Merchant_MerchantName" value="Comercio de pruebas"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>Importe de la operación:</td>
+							<td>
+								<input type="text" name="Ds_Merchant_Amount" value="1"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>Tipo de transacción:</td>
+							<td>
+								<input type="text" name="Ds_Merchant_TransactionType" value="0"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>URL de notificación online:</td>
+							<td>
+								<input type="text" name="Ds_Merchant_MerchantURL" value="http://www.sermepa.es"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>Importe Total (Sólo para transacción recurrente):</td>
+							<td>
+								<input type="text" name="Ds_Merchant_SumTotal" value="1"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>Frecuencia (Sólo para transacción recurrente):</td>
+							<td>
+								<input type="text" name="Ds_Merchant_DateFrecuency" value="1"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>Fecha de fin (Sólo para transacción recurrente):</td>
+							<td>
+								<input type="text" name="Ds_Merchant_ChargeExpiryDate" value="2015-09-30"/>
+							</td>		
+						</tr>
+						<tr>
+							<td>Entorno</td>
+							<td>
+								<input type="text" name="Ds_Merchant_Entorno" value="DESARROLLO"/>
+							</td>		
+						</tr>
+						<tr>
+							<td align="center">
+								<br/>
+								<input type="submit" value="Aceptar">
+							</td>		
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -246,11 +246,11 @@ $config['encryption_key'] = '8s628pte3mSgKbVMjw8ykVEuKjyNtfAW';
 */
 $config['sess_cookie_name']		= 'kembikio';
 $config['sess_expiration']		= 7200;
-$config['sess_expire_on_close']	= FALSE;
-$config['sess_encrypt_cookie']	= FALSE;
+$config['sess_expire_on_close']	= TRUE;
+$config['sess_encrypt_cookie']	= TRUE;
 $config['sess_use_database']	= TRUE;
 $config['sess_table_name']		= 'ci_sessions';
-$config['sess_match_ip']		= FALSE;
+$config['sess_match_ip']		= TRUE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
 
@@ -357,6 +357,19 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/*
+|--------------------------------------------------------------------------
+| kembikio variables
+|--------------------------------------------------------------------------
+|
+*/
+
+$config['tpv_url'] 					= 'https://sis-t.redsys.es:25443/sis/realizarPago';
+$config['Ds_Merchant_MerchantCode'] = '332875228';
+$config['Ds_Merchant_Terminal'] 	= '001';
+$config['Ds_Merchant_Currency'] 	= '978';
+$config['Ds_Merchant_MerchantName'] = "Kembikio";
+$config['tpv_key'] 					= 'qwertyasdf0123456789';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

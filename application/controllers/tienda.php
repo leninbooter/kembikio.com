@@ -18,10 +18,14 @@ class Tienda extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('cart');
+	}
 	
 	public function agregar_carrito()
 	{
-		$this->load->library('cart');
 		$this->load->model('tienda_m');
 		
 		$servicio_id = trim( $this->input->get( 'serv_id', TRUE ) );
@@ -33,12 +37,12 @@ class Tienda extends CI_Controller {
 				   'id'      => $servicio_id,
 				   'qty'     => 1,
 				   'price'   => $detalles_servicio->precio,
-				   'name'    => $detalles_servicio->descripcion,
+				   'name'    => htmlentities ($detalles_servicio->descripcion),
 				   'options' => array('moneda_cod_local' => $detalles_servicio->fk_moneda)
 				);
-
+				$this->cart->destroy();
 				$this->cart->insert($data);
-					
+				$this->session->set_userdata('descripcion', $detalles_servicio->descripcion);
 				$data['title'] = "Contratación de Servicio - Paso 1";
 				$this->load->view('compra_1', $data);
 			}
@@ -73,6 +77,7 @@ class Tienda extends CI_Controller {
 	
 	public function registrar_orden()
 	{
+		log_message('debug', "registrar_orden");
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');			
 				
@@ -117,37 +122,128 @@ class Tienda extends CI_Controller {
 		}
 		else
 		{
+			log_message('debug', "a validar");
 			$nombre 		= trim( $this->input->post('nombre', 		TRUE) );
 			$apellido 		= trim( $this->input->post('apellido', 		TRUE) );
 			$email 			= trim( $this->input->post('email', 		TRUE) );
 			$telefono 		= trim( $this->input->post('telefono', 		TRUE) );
 			$direccion 		= trim( $this->input->post('direccion',		TRUE) );
 			$cp 			= trim( $this->input->post('cp', 			TRUE) );
+			$id_servicio 	= trim( $this->input->post('servicio_id', 	TRUE) );
+			$subtotal 		= trim( $this->input->post('subtotal', 		TRUE) );
+			$imp 			= trim( $this->input->post('imp', 			TRUE) );
+			$total 			= trim( $this->input->post('total', 		TRUE) );
 			
 			if( strlen($nombre) 	<= 2 || 
 				strlen($apellido) 	<= 2 || 
 				strlen($email) 		<= 2 || 
 				strlen($telefono) 	<= 2 || 
 				strlen($direccion) 	<= 2 || 
-				strlen($cp) 	<= 2 )
+				strlen($cp) 		<= 2 ||
+				!is_numeric($id_servicio) 	||
+				!is_numeric($subtotal)		||
+				!is_numeric($imp) 			||
+				!is_numeric($total) )
 			{
 				echo "<p>Formato del mensaje inválido.</p>";
 			}else 
 			{
+				log_message('debug', "cargaré modelos");
 				$this->load->model('clientes_m');
-				$this->load->model('pedidos_m');
-				
-				if( $id_cliente = $this->clientes_m->registrar(  $email, $nombre, $apellido, $telefono, $direccion, $cp ) )
+				log_message('debug', "clientes_m");
+				$this->load->model('pedidos_m');												
+				log_message('debug', "voy a registrar");
+				if( ($id_cliente = $this->clientes_m->registrar( $email, $nombre, $apellido, $telefono, $direccion, $cp )) != false )
 				{
-					if( $this->pedidos_m->registrar( ) )
+				log_message('debug', "registre cliente");
+					if( ($id_pedido = $this->pedidos_m->registrar( $id_cliente, $id_servicio, $subtotal, $imp, $total )) != false ) 
 					{
-						echo "<p>Enviado <img src=\"".base_url('assets/imagenes/checked_verde.png')."\"></p>";
+					log_message('debug', "registre pedido");
+						$this->session->set_userdata( 'id_orden', $id_pedido);
+						$this->session->set_userdata( 'id_cliente', $id_cliente);
+						$this->session->set_userdata( 'nombre', $nombre );
+						$this->session->set_userdata( 'apellido', $apellido );
+						$this->session->set_userdata( 'membresia', $nombre[0].$apellido[0].$id_pedido );
+						
+						/*TPV post fields*/
+						$data['Ds_Merchant_MerchantName'] 		= $this->config->item('Ds_Merchant_MerchantName');
+						$data['Ds_Merchant_MerchantCode'] 		= $this->config->item('Ds_Merchant_MerchantCode');
+						$data['Ds_Merchant_Terminal'] 			= $this->config->item('Ds_Merchant_Terminal');
+						$data['Ds_Merchant_Order']				= str_pad( $id_pedido, 4, "0", STR_PAD_LEFT );
+						$data['Ds_Merchant_Amount']				= str_replace( '.', '', str_replace( ',', '', $this->cart->format_number( $this->cart->total()  ) ) );
+						$data['Ds_Merchant_Currency'] 			= $this->config->item('Ds_Merchant_Currency');
+						$data['Ds_Merchant_TransactionType'] 	= "0";
+						$data['Ds_Merchant_MerchantSignature'] 	= sha1( $data['Ds_Merchant_Amount'].$data['Ds_Merchant_Order'].$data['Ds_Merchant_MerchantCode'].$data['Ds_Merchant_Currency'].$data['Ds_Merchant_TransactionType'].$this->config->item('tpv_key')  );
+						
+						$data['id_cliente'] 					= $id_cliente;
+						$data['nombre'] 						= $nombre;
+						
+						$this->load->view( 'compra_2', $data );
 					}
-				}else {
+				}else
+				{				
 					echo "<p>Error procesando la orden; por favor, inténtelo más tarde.</p>";
 				}
 			}
 		}
+	}
+	
+	public function reg_notif_tpv()
+	{
+		$this->load->helper(array('form', 'url'));		
+	}
+	
+	public function aut_aceptada()
+	{
+		$this->load->model( 'pedidos_m' );		
+		
+		if( $this->pedidos_m->reg_pago_aceptado( $this->session->userdata('id_orden'), $this->session->userdata('id_cliente') ) )
+		{
+			$data['nombre'] = $this->session->userdata('nombre')." ".$this->session->userdata('apellido');
+			$data['plan'] 	= $this->session->userdata('descripcion');
+			$data['codigo'] = $this->session->userdata('membresia');
+			
+			$this->load->view( 'compra_3', $data );
+			
+			$this->cart->destroy();			
+		}else {
+			header( "Location: ".base_url() );
+		}
+	}
+	
+	public function aut_rechazada()
+	{
+		$this->load->model( 'pedidos_m' );
+		
+		if( $this->pedidos_m->reg_pago_rechazado( $this->session->userdata('id_orden'), $this->session->userdata('id_cliente') ) )
+		{
+			$data['nombre'] = $this->session->userdata('nombre');
+			$data['Ds_Merchant_MerchantName'] 		= $this->config->item('Ds_Merchant_MerchantName');
+			$data['Ds_Merchant_MerchantCode'] 		= $this->config->item('Ds_Merchant_MerchantCode');
+			$data['Ds_Merchant_Terminal'] 			= $this->config->item('Ds_Merchant_Terminal');
+			$data['Ds_Merchant_Order']				= str_pad( $this->session->userdata('id_orden'), 4, "0", STR_PAD_LEFT );
+			$data['Ds_Merchant_Amount']				= str_replace( '.', '', str_replace( ',', '', $this->cart->format_number( $this->cart->total()  ) ) );
+			$data['Ds_Merchant_Currency'] 			= $this->config->item('Ds_Merchant_Currency');
+			$data['Ds_Merchant_TransactionType'] 	= "0";
+			$data['Ds_Merchant_MerchantSignature'] 	= sha1( $data['Ds_Merchant_Amount'].$data['Ds_Merchant_Order'].$data['Ds_Merchant_MerchantCode'].$data['Ds_Merchant_Currency'].$data['Ds_Merchant_TransactionType'].$this->config->item('tpv_key')  );			
+			
+			$this->load->view( 'compra_4', $data );
+		}else {
+			echo "Error";
+		}
+	}
+	
+	public function imp_carnet()
+	{
+		$this->load->helper(array('dompdf', 'file'));
+		// page info here, db calls, etc.     
+		$data['nombre'] = $this->session->userdata('nombre')." ".$this->session->userdata('apellido');
+		$data['plan'] 	= $this->session->userdata('descripcion');
+		$data['codigo'] = $this->session->userdata('membresia');
+		$html = $this->load->view('membresia_tarjeta', $data, true);
+		pdf_create($html, 'membresia');
+		//$this->load->view('membresia_tarjeta', $data);
+		
 	}
 }
 

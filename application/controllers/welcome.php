@@ -24,8 +24,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome');
 		$this->load->view('footer');
 		
-		$this->load->library('session');		
-			
+		$this->load->library('cart');		
+		$this->cart->destroy();
+		
 		$this->session->set_userdata('moneda_cod_local', '1');
 		$this->session->set_userdata('moneda_cod', 'EUR');
 		$this->session->set_userdata('moneda_cod_bank', '978');

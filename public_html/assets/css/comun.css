@@ -33,11 +33,15 @@ select {
   width: 100%;
   display: inline-block;
 }
+.errores ul {
+  padding-left: 20px;
+}
 .errores #mensaje {
-  width: 80%;
+  width: 90%;
   display: inline-block;
   vertical-align: middle;
   float: right;
+  padding-right: 10px;
 }
 .errores #icono {
   width: 20%;

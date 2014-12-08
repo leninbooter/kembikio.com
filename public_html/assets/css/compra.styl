@@ -22,8 +22,13 @@ table td:last-child
 	font-weight bold
 
 .actual
+.completado
 	background #33A1D9 !important
 
+.actual a
+.completado a
+	border 2px solid #1676a7 !important
+	
 .actual h1
 .completado h1
 	visibility visible !important
@@ -42,8 +47,23 @@ table td:last-child
 	color #fff
 	font-size 
 
+.boton_descarga
+	margin 0 auto
+	width 100%
+	text-align center
+	
 .base_controles button:hover
+.button:hover
 	background #ff6d00
+	
+.button
+	border-radius 0%
+	padding 5px 13px
+	margin 0
+	border 0px solid #ff6d00
+	background #fa8935
+	color #fff
+	font-size 
 	
 .completado a
 	background #49c0fd
@@ -76,6 +96,54 @@ table td:last-child
 	
 .form_pedido .info
 	width 40%
+
+.membresia
+	width 502px
+	height 319px
+	background-image url("http://127.0.0.1/kembikio/assets/imagenes/membresia_tarj.jpg")
+	margin 0 auto 20px
+	-webkit-box-shadow 0px 0px 8px 0px #000
+	box-shadow 0px 0px 8px 0px #000
+	border 1px dashed #000
+	
+.membresia > .nombre
+	left 140px
+	top 170px
+	position relative
+	font-size 30px
+	
+.membresia > .plan
+	position relative
+	top 220px
+	left 130px
+	font-size 20px
+	
+.message h1
+	text-align center
+	padding 10px
+	
+.paypal
+	width 50%
+	float right
+	text-align center
+	vertical-align middle
+	
+.paypal input
+	width auto
+
+.paypal h2
+	margin-top 0
+	
+.paypal img
+	vertical-align middle
+	
+.redes_aceptadas
+		padding 20px
+	
+.tpv
+	width 50%
+	float left
+	text-align center
 	
 #compra_lineatemporal
 	width 100%
@@ -112,7 +180,7 @@ table td:last-child
 #compra_lineatemporal li a
 	background #fff
 	position relative
-	border 2px solid #1676a7
+	border 2px solid #ccc
 	border-radius 50%
 	padding 2px 8px 5px
 	bottom 10px
